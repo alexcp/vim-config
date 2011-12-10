@@ -1,20 +1,42 @@
-autocmd VimEnter * NERDTree
-autocmd BufEnter * NERDTreeMirror
 let Tlist_Ctags_Cmd = 'c:\ctags\ctags.exe'
-let g:ragtag_global_maps = 1 
+let g:ragtag_global_maps = 1
 
-au BufRead,BufNewFile *.scss set filetype=scss
 
-map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR> 
+filetype on
 
-autocmd BufEnter * silent! lcd %:p:h
+"autocmd features
+if has("autocmd")
+  "start NERDTree
+  autocmd VimEnter * NERDTree
+  autocmd BufEnter * NERDTreeMirror
+
+  "indentation des fichier java
+  autocmd FileType java setlocal ts=8 sts=8 sw=8 expandtab
+
+  "sass as css"
+  autocmd BufRead,BufNewFile *.scss set filetype=css
+
+  autocmd BufEnter * silent! lcd %:p:h
+
+  "recalculate the trailing whitespace warning when idle, and after saving
+  autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
+
+  "recalculate the long line warning when idle and after saving
+  autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
+
+  "recalculate the tab warning flag when idle and after writing
+  autocmd cursorhold,bufwritepost * unlet! b:statusline_tab_warning
+endif
+
+
+
+map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+
+
 
 "avoiding annoying CSApprox warning message
 let g:CSApprox_verbose_level = 0
 
-"necessary on some Linux distros for pathogen to properly load bundles
-filetype on
-filetype off
 
 "load pathogen managed plugins
 call pathogen#runtime_append_all_bundles()
@@ -81,8 +103,6 @@ set laststatus=2
 "turn off needless toolbar on gvim/mvim
 set guioptions-=T
 
-"recalculate the trailing whitespace warning when idle, and after saving
-autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
 
 "return '[\s]' if trailing white space is detected
 "return '' otherwise
@@ -108,8 +128,6 @@ function! StatuslineCurrentHighlight()
     endif
 endfunction
 
-"recalculate the tab warning flag when idle and after writing
-autocmd cursorhold,bufwritepost * unlet! b:statusline_tab_warning
 
 "return '[&et]' if &et is set wrong
 "return '[mixed-indenting]' if spaces and tabs are used to indent
@@ -130,8 +148,6 @@ function! StatuslineTabWarning()
     return b:statusline_tab_warning
 endfunction
 
-"recalculate the long line warning when idle and after saving
-autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
 
 "return a warning for "long lines" where "long" is either &textwidth or 80 (if
 "no &textwidth is set)
@@ -191,6 +207,7 @@ endfunction
 "indent settings
 set shiftwidth=2
 set softtabstop=2
+set tabstop=2
 set expandtab
 set autoindent
 
