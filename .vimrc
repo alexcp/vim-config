@@ -16,6 +16,8 @@ if has("autocmd")
   autocmd FileType java  abbr ps public static
   autocmd FileType java  abbr main public static void main(String[] args){<CR>}<esc>O
   autocmd FileType java  abbr fori for(int i=0; i%; i++){<CR>}<esc>k0f%xi
+  autocmd FileType java  abbr if if(%){<CR>}<esc>k0f%xi
+
 
   "sass as css"
   autocmd BufRead,BufNewFile *.scss set filetype=css
