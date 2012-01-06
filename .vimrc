@@ -1,9 +1,28 @@
-let Tlist_Ctags_Cmd = 'c:\ctags\ctags.exe'
-let g:ragtag_global_maps = 1
+call pathogen#infect('plugin')
 
+"do not change the current working directory
+set noautochdir
+
+"quit nerdtree on file open"
+let NERDTreeQuitOnOpen = 1
+
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+
+" Close all open buffers on entering a window if the only
+function! s:CloseIfOnlyNerdTreeLeft()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        q
+      endif
+    endif
+  endif
+endfunction
+
+silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
+noremap <silent> <c-t> :call FindInNERDTree()<CR>
 
 filetype on
-
 "autocmd features
 if has("autocmd")
   "start NERDTree
@@ -37,10 +56,6 @@ if has("autocmd")
 endif
 
 map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
-
-"avoiding annoying CSApprox warning message
-let g:CSApprox_verbose_level = 0
-
 
 "load pathogen managed plugins
 call pathogen#runtime_append_all_bundles()
@@ -222,6 +237,9 @@ set hidden
 let g:CommandTMaxHeight=10
 let g:CommandTMatchWindowAtTop=1
 
+
+set guifont=Consolas\ 14
+
 if has("gui_running")
     "tell the term has 256 colors
     set t_Co=256
@@ -234,7 +252,7 @@ if has("gui_running")
     if has("gui_gnome")
         set term=gnome-256color
         colorscheme railscasts2
-        set guifont=Monospace\ Bold\ 12
+        set guifont=Consolas\ Bold\ 14
     endif
 
     if has("gui_mac") || has("gui_macvim")
@@ -251,13 +269,11 @@ if has("gui_running")
         set enc=utf-8
     endif
 else
-    "dont load csapprox if there is no gui support - silences an annoying warning
-    let g:CSApprox_loaded = 1
 
     "set railscasts2 colorscheme when running vim in gnome terminal
     if $COLORTERM == 'gnome-terminal'
         set term=gnome-256color
-        colorscheme railscasts2
+        colorscheme railscasts2_term
     else
         colorscheme default
     endif
@@ -267,8 +283,8 @@ endif
 " else in your ~/.vimrc file, such as:
 " nmap <silent> <Leader>q <Plug>PeepOpen
 
-silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
-nnoremap <silent> <c-t> :call FindInNERDTree()<CR>
+"silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
+"nnoremap <silent> <c-t> :call FindInNERDTree()<CR>
 
 "make <c-l> clear the highlight as well as redraw
 nnoremap <C-L> :nohls<CR><C-L>
