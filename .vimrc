@@ -1,7 +1,7 @@
 call pathogen#infect('plugin')
 
 "do not change the current working directory
-set noautochdir
+"set noautochdir
 
 "quit nerdtree on file open"
 let NERDTreeQuitOnOpen = 1
@@ -22,6 +22,9 @@ endfunction
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 noremap <silent> <c-t> :call FindInNERDTree()<CR>
 
+"map to CommandT
+noremap <silent>T :CommandT<CR>
+
 filetype on
 "autocmd features
 if has("autocmd")
@@ -38,8 +41,6 @@ if has("autocmd")
 
   "sass as css"
   autocmd BufRead,BufNewFile *.scss set filetype=css
-
-  autocmd BufEnter * silent! lcd %:p:h
 
   "recalculate the trailing whitespace warning when idle, and after saving
   autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
@@ -134,5 +135,3 @@ else
     endif
 endif
 
-"map to CommandT
-nnoremap <leader>t :CommandT<CR>
