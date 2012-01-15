@@ -1,8 +1,5 @@
 call pathogen#infect('plugin')
 
-"do not change the current working directory
-"set noautochdir
-
 "quit nerdtree on file open"
 let NERDTreeQuitOnOpen = 1
 
@@ -41,23 +38,10 @@ if has("autocmd")
 
   "sass as css"
   autocmd BufRead,BufNewFile *.scss set filetype=css
-
-  "recalculate the trailing whitespace warning when idle, and after saving
-  autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
-
-  "recalculate the long line warning when idle and after saving
-  autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
-
-  "recalculate the tab warning flag when idle and after writing
-  autocmd cursorhold,bufwritepost * unlet! b:statusline_tab_warning
 endif
 
 "load pathogen managed plugins
 call pathogen#runtime_append_all_bundles()
-
-"Use Vim settings, rather then Vi settings (much better!).
-"This must be first, because it changes other options as a side effect.
-set nocompatible
 
 "allow backspacing over everything in insert mode
 set backspace=indent,eol,start
