@@ -102,7 +102,9 @@ syntax on
 "hide buffers when not displayed
 set hidden
 
+"Display options
 set guifont=Consolas\ 14
+set cursorline
 
 if has("gui_running")
     "tell the term has 256 colors

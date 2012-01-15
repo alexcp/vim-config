@@ -47,7 +47,8 @@ hi DiffChange   guifg=black          guibg=skyblue1
 hi DiffText     guifg=black          guibg=hotpink1  gui=none
 hi DiffDelete   guibg=gray45         guifg=black     gui=none
 
-
+"change the cursorline color
+hi CursorLine   cterm=NONE ctermbg=gray ctermfg=NONE guibg=#171717 guifg=NONE
 
 " syntax highlighting groups
 hi Comment      guifg=PaleGreen3     gui=italic
