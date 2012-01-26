@@ -62,8 +62,11 @@ set wrap linebreak nolist
 "add some line space for easy reading
 set linespace=4
 
-"turn off needless toolbar on gvim/mvim
+"Remove the useless gui in gvim
+"menu, toolbar, scrollbar
+set guioptions-=m
 set guioptions-=T
+set guioptions-=r
 
 "indent settings
 set shiftwidth=2
