@@ -16,8 +16,15 @@ function! s:CloseIfOnlyNerdTreeLeft()
   endif
 endfunction
 
+"Quit even if taglist is still open"
+let Tlist_Exit_OnlyWindow = 1
+
+"Remapping key"
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 noremap <silent> <c-t> :call FindInNERDTree()<CR>
+
+"taglist"
+noremap <F2> :TlistToggle<CR>
 
 "map to CommandT
 noremap <silent>T :CommandT<CR>
