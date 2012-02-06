@@ -22,6 +22,7 @@ let Tlist_Exit_OnlyWindow = 1
 "Remapping key"
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 noremap <silent> <c-t> :call FindInNERDTree()<CR>
+noremap <BS> :set nohlsearch
 
 "taglist"
 noremap <F2> :TlistToggle<CR>
@@ -46,6 +47,16 @@ if has("autocmd")
   "sass as css"
   autocmd BufRead,BufNewFile *.scss set filetype=css
 endif
+
+"remove trailling whitespace + keep cursor position"
+fun! <SID>StripTrailingWhitespaces()
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
+endfun
+
+autocmd BufWritePre *.h :call <SID>StripTrailingWhitespaces()
 
 "load pathogen managed plugins
 call pathogen#runtime_append_all_bundles()
