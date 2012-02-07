@@ -22,7 +22,7 @@ let Tlist_Exit_OnlyWindow = 1
 "Remapping key"
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 noremap <silent> <c-t> :call FindInNERDTree()<CR>
-noremap <BS> :set nohlsearch
+noremap <BS> :set nohlsearch<CR>
 
 "taglist"
 noremap <F2> :TlistToggle<CR>
