@@ -26,6 +26,8 @@ set mouse=c
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 noremap <silent> <c-t> :call FindInNERDTree()<CR>
 noremap <BS> :set nohlsearch<CR>
+"run rspec on current file"
+noremap ,t :w\|!rspec %<cr>
 
 "taglist"
 noremap <F2> :TlistToggle<CR>
