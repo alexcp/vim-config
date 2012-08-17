@@ -46,9 +46,6 @@ if has("autocmd")
   autocmd FileType java  abbr fori for(int i=0; i%; i++){<CR>}<esc>k0f%s
   autocmd FileType java  abbr if if(%){<CR>}<esc>k0f%s
 
-  autocmd BufRead,BufNewFile *.erb abbr <% <%  %><esc>2hi
-  autocmd BufRead,BufNewFile *.erb abbr <%= <%=  %><esc>2hi
-
   "sass as css"
   autocmd BufRead,BufNewFile *.scss set filetype=css
 endif
