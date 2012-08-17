@@ -25,7 +25,7 @@ set mouse=c
 "Remapping key"
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 noremap <silent> <c-t> :call FindInNERDTree()<CR>
-noremap <BS> :set nohlsearch<CR>
+noremap <BS> :nohlsearch<CR>
 "run rspec on current file"
 noremap ,t :w\|!rspec %<cr>
 
