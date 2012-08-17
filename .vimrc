@@ -33,7 +33,7 @@ noremap ,t :w\|!rspec %<cr>
 noremap <F2> :TlistToggle<CR>
 
 "map to CommandT
-noremap <silent>T :CommandT<CR>
+noremap <silent>T :CtrlP<CR>
 
 filetype on
 "autocmd features
