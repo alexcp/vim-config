@@ -114,17 +114,16 @@ set guifont=Consolas\ 14
 set cursorline
 
 if has("gui_running")
-    "tell the term has 256 colors
+    set background=light
     set t_Co=256
-
-    colorscheme desertEx
+    colorscheme solarized
     set guitablabel=%M%t
     set lines=40
     set columns=115
 
     if has("gui_gnome")
         set term=gnome-256color
-        colorscheme desertEx
+        colorscheme solarized
         set guifont=Consolas\ Bold\ 14
     endif
 
@@ -133,14 +132,11 @@ if has("gui_running")
         set enc=utf-8
     endif
 else
-
-    "set railscasts2 colorscheme when running vim in gnome terminal
     if $COLORTERM == 'gnome-terminal'
-        set term=gnome-256color
-        "colorscheme railscasts2_term
-        colorscheme desertEx
+        set t_Co=16
+        colorscheme solarized
+        set background=dark
     else
         colorscheme default
     endif
 endif
-
