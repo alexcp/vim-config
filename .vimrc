@@ -26,8 +26,12 @@ set mouse=c
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 noremap <silent> <c-t> :call FindInNERDTree()<CR>
 noremap <BS> :nohlsearch<CR>
+
 "run rspec on current file"
-noremap ,t :w\|!rspec %<cr>
+autocmd FileType ruby  noremap ,t :w\|!rspec %<cr>
+
+"run ant
+autocmd FileType java noremap ,t :! ant<cr>
 
 "taglist"
 noremap <F2> :TlistToggle<CR>
@@ -39,7 +43,7 @@ filetype on
 "autocmd features
 if has("autocmd")
   "options pour les fichiers java
-  autocmd FileType java setlocal ts=8 sts=8 sw=8 expandtab
+  autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
   autocmd FileType java  abbr sop System.out.println("");<esc>3ha
   autocmd FileType java  abbr ps public static
   autocmd FileType java  abbr main public static void main(String[] args){<CR>}<esc>O
@@ -49,6 +53,16 @@ if has("autocmd")
   "sass as css"
   autocmd BufRead,BufNewFile *.scss set filetype=css
 endif
+
+"java highlight
+let java_mark_braces_in_parens_as_errors=1
+let java_highlight_java_lang_ids=1
+let java_highlight_java_io=1
+let java_highlight_functions="style"
+
+"alt-tab
+noremap  <silent>ç :b#<CR>
+
 
 "remove trailling whitespace + keep cursor position"
 fun! <SID>StripTrailingWhitespaces()
