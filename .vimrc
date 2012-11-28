@@ -1,5 +1,10 @@
 call pathogen#infect('plugin')
 
+set nocompatible
+set modelines=0
+set encoding=utf-8
+let mapleader = ","
+
 "quit nerdtree on file open"
 let NERDTreeQuitOnOpen = 1
 
@@ -26,6 +31,7 @@ set mouse=c
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 noremap <silent> <c-t> :call FindInNERDTree()<CR>
 noremap <BS> :nohlsearch<CR>
+noremap <c-l> ysaw
 
 "run rspec on current file"
 autocmd FileType ruby  noremap ,t :w\|!rspec %<cr>
@@ -147,10 +153,21 @@ if has("gui_running")
     endif
 else
     if $COLORTERM == 'gnome-terminal'
-        set t_Co=16
+        set t_Co=256
         colorscheme solarized
         set background=dark
     else
         colorscheme default
     endif
 endif
+
+" removing some annoying keys
+nnoremap <F1> <nop>
+nnoremap Q <nop>
+nnoremap K <nop>
+
+set smartcase
+set wildmode=longest,list
+
+"fix inconsistence when yanking
+nnoremap Y y$
