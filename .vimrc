@@ -122,44 +122,17 @@ filetype indent on
 "turn on syntax highlighting
 syntax on
 
-"some stuff to get the mouse going in term
-"set mouse=a
-"set ttymouse=xterm2
-
 "hide buffers when not displayed
 set hidden
 
 "Display options
 set guifont=Consolas\ 14
 set cursorline
-
-if has("gui_running")
-    set background=light
-    set t_Co=256
-    colorscheme solarized
-    set guitablabel=%M%t
-    set lines=40
-    set columns=115
-
-    if has("gui_gnome")
-        set term=gnome-256color
-        colorscheme solarized
-        set guifont=Consolas\ Bold\ 14
-    endif
-
-    if has("gui_win32") || has("gui_win32s")
-        set guifont=Consolas:h12
-        set enc=utf-8
-    endif
-else
-    if $COLORTERM == 'gnome-terminal'
-        set t_Co=256
-        colorscheme solarized
-        set background=dark
-    else
-        colorscheme default
-    endif
-endif
+set enc=utf-8
+set t_Co=256
+""colorscheme solarized
+colorscheme Tomorrow
+set background=light
 
 " removing some annoying keys
 nnoremap <F1> <nop>
