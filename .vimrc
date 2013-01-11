@@ -42,7 +42,7 @@ autocmd FileType java noremap ,t :! ant<cr>
 "taglist"
 noremap <F2> :TlistToggle<CR>
 
-"map to CommandT
+"map to CtrlP
 noremap <silent>T :CtrlP<CR>
 
 filetype on
@@ -130,9 +130,12 @@ set guifont=Consolas\ 14
 set cursorline
 set enc=utf-8
 set t_Co=256
-""colorscheme solarized
-colorscheme Tomorrow
-set background=light
+
+"colortoggle settings
+let g:default_background_type = "light"
+let g:dark_colorscheme = "Tomorrow-Night"
+let g:light_colorscheme = "Tomorrow"
+map <silent><F5> :ToggleBg<CR>
 
 " removing some annoying keys
 nnoremap <F1> <nop>
