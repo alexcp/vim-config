@@ -1,12 +1,12 @@
-" Vim filetype plugin
+" Vim indent file
 " Language:	SCSS
 " Maintainer:	Tim Pope <vimNOSPAM@tpope.org>
 " Last Change:	2010 Jul 26
 
-if exists("b:did_ftplugin")
+if exists("b:did_indent")
   finish
 endif
 
-runtime! ftplugin/sass.vim
+runtime! indent/css.vim
 
 " vim:set sw=2:

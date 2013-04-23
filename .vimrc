@@ -3,6 +3,7 @@ call pathogen#infect('plugin')
 set nocompatible
 set modelines=0
 set encoding=utf-8
+
 let mapleader = ","
 
 "quit nerdtree on file open"
@@ -33,11 +34,18 @@ noremap <silent> <c-t> :call FindInNERDTree()<CR>
 noremap <BS> :nohlsearch<CR>
 noremap <c-l> ysaw
 
-"run rspec on current file"
-autocmd FileType ruby  noremap ,t :w\|!rspec %<cr>
+"Command aliases
+:ca W w
+:ca WQ wq
+:ca Wq wq
 
+"Gundo remap
+noremap <leader>q :GundoToggle<CR>
+
+"run rspec on current file"
+autocmd FileType ruby  noremap <leader>t :w\|!bundle exec rspec %<cr>
 "run ant
-autocmd FileType java noremap ,t :! ant<cr>
+autocmd FileType java noremap <leader>t :! ant<cr>
 
 "taglist"
 noremap <F2> :TlistToggle<CR>
@@ -46,21 +54,9 @@ noremap <F2> :TlistToggle<CR>
 noremap <silent>T :CtrlP<CR>
 
 filetype on
-"autocmd features
-if has("autocmd")
-  "options pour les fichiers java
-  autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
-  autocmd FileType java  abbr sop System.out.println("");<esc>3ha
-  autocmd FileType java  abbr ps public static
-  autocmd FileType java  abbr main public static void main(String[] args){<CR>}<esc>O
-  autocmd FileType java  abbr fori for(int i=0; i%; i++){<CR>}<esc>k0f%s
-  autocmd FileType java  abbr if if(%){<CR>}<esc>k0f%s
 
-  "sass as css"
-  autocmd BufRead,BufNewFile *.scss set filetype=css
-endif
-
-"java highlight
+"java"
+autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
 let java_mark_braces_in_parens_as_errors=1
 let java_highlight_java_lang_ids=1
 let java_highlight_java_io=1
@@ -68,7 +64,6 @@ let java_highlight_functions="style"
 
 "alt-tab
 noremap  <silent>ç :b#<CR>
-
 
 "remove trailling whitespace + keep cursor position"
 fun! <SID>StripTrailingWhitespaces()
@@ -102,12 +97,6 @@ set wrap linebreak nolist
 "add some line space for easy reading
 set linespace=4
 
-"Remove the useless gui in gvim
-"menu, toolbar, scrollbar
-set guioptions-=m
-set guioptions-=T
-set guioptions-=r
-
 "indent settings
 set shiftwidth=2
 set softtabstop=2
@@ -115,24 +104,21 @@ set tabstop=2
 set expandtab
 set autoindent
 
-"load ftplugins and indent files
 filetype plugin on
 filetype indent on
-
-"turn on syntax highlighting
-syntax on
 
 "hide buffers when not displayed
 set hidden
 
 "Display options
+syntax on
 set guifont=Consolas\ 14
 set cursorline
 set enc=utf-8
 set t_Co=256
 
 "colortoggle settings
-let g:default_background_type = "light"
+let g:default_background_type = "dark"
 let g:dark_colorscheme = "Tomorrow-Night"
 let g:light_colorscheme = "Tomorrow"
 map <silent><F5> :ToggleBg<CR>
@@ -141,9 +127,10 @@ map <silent><F5> :ToggleBg<CR>
 nnoremap <F1> <nop>
 nnoremap Q <nop>
 nnoremap K <nop>
+nmap j gj
+nmap k gk
+nnoremap Y y$
 
+set ignorecase
 set smartcase
 set wildmode=longest,list
-
-"fix inconsistence when yanking
-nnoremap Y y$
