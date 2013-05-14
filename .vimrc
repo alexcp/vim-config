@@ -28,7 +28,7 @@ let Tlist_Exit_OnlyWindow = 1
 "disable the mouse"
 set mouse=c
 
-"Remapping key"
+"Remapping key" do
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 noremap <silent> <c-t> :call FindInNERDTree()<CR>
 noremap <BS> :nohlsearch<CR>
@@ -135,7 +135,6 @@ set ignorecase
 set smartcase
 set wildmode=longest,list
 
-
 " CtrlP + Matcher
 let g:path_to_matcher = "/usr/local/bin/matcher"
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files . -co --exclude-standard']
@@ -161,3 +160,12 @@ function! GoodMatch(items, str, limit, mmode, ispath, crfile, regex)
 
   return split(system(cmd), "\n")
 endfunction
+
+"Rainbow Parenteses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+"Easy Motion
+"let g:EasyMotion_leader_key = '<Leader>'
