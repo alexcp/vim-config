@@ -33,6 +33,7 @@ silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 noremap <silent> <c-t> :call FindInNERDTree()<CR>
 noremap <BS> :nohlsearch<CR>
 noremap <c-l> ysaw
+noremap <leader>h <Esc>:call ToggleHardMode()<CR>
 
 "Command aliases
 :ca W w
@@ -168,4 +169,4 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 "Easy Motion
-"let g:EasyMotion_leader_key = '<Leader>'
+let g:EasyMotion_leader_key = '<Leader>'
