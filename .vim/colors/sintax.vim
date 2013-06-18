@@ -310,13 +310,13 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("rubyAttribute", s:blue, "", "")
 	call <SID>X("rubyInclude", s:blue, "", "")
 	call <SID>X("rubyLocalVariableOrMethod", s:darkBlue, "", "")
-	call <SID>X("rubyCurlyBlock", s:darkBlue, "", "")
+	call <SID>X("rubyCurlyBlock", s:red, "", "")
 	call <SID>X("rubyStringDelimiter", s:green, "", "")
 	call <SID>X("rubyInterpolationDelimiter", s:darkBlue, "", "")
 	call <SID>X("rubyConditional", s:red, "", "")
 	call <SID>X("rubyRepeat", s:orange, "", "")
 	call <SID>X("rubyControl", s:red, "", "")
-	call <SID>X("rubyException", s:red, "", "")
+	call <SID>X("rubyException", s:red, "", "bold")
 
 	" Python Highlighting
 	call <SID>X("pythonInclude", s:purple, "", "")
@@ -330,8 +330,8 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("pythonExClass", s:darkBlue, "", "")
 
 	" JavaScript Highlighting
-	call <SID>X("javaScriptBraces", s:foreground, "", "")
-	call <SID>X("javaScriptFunction", s:purple, "", "")
+	call <SID>X("javaScriptBraces", s:red, "", "")
+	call <SID>X("javaScriptFunction", s:black, "", "")
 	call <SID>X("javaScriptConditional", s:red, "", "")
 	call <SID>X("javaScriptRepeat", s:purple, "", "")
 	call <SID>X("javaScriptNumber", s:darkBlue, "", "")
