@@ -121,7 +121,7 @@ set t_Co=256
 "colortoggle settings
 let g:default_background_type = "light"
 let g:dark_colorscheme = "Tomorrow-Night"
-let g:light_colorscheme = "hemisu"
+let g:light_colorscheme = "sintax"
 map <silent><F5> :ToggleBg<CR>
 
 " removing some annoying keys
