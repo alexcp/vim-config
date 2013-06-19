@@ -136,6 +136,9 @@ set ignorecase
 set smartcase
 set wildmode=longest,list
 
+" do not include trailing \n at end of file 
+set binary noeol
+
 " CtrlP + Matcher
 let g:path_to_matcher = "/usr/local/bin/matcher"
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files . -co --exclude-standard']
