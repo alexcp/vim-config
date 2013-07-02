@@ -108,6 +108,9 @@ set autoindent
 filetype plugin on
 filetype indent on
 
+" omnicompletion
+set omnifunc=syntaxcomplete#Complete
+
 "hide buffers when not displayed
 set hidden
 
