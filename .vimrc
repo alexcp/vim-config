@@ -122,10 +122,13 @@ set enc=utf-8
 set t_Co=256
 
 "colortoggle settings
-let g:default_background_type = "light"
+let g:default_background_type = "dark"
 let g:dark_colorscheme = "Tomorrow-Night"
 let g:light_colorscheme = "sintax"
-map <silent><F5> :ToggleBg<CR>
+
+" black is a custom xsession background color
+autocmd VimEnter * hi Normal ctermbg=256
+
 
 " removing some annoying keys
 nnoremap <F1> <nop>
