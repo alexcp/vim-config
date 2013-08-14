@@ -179,3 +179,6 @@ au Syntax * RainbowParenthesesLoadBraces
 
 "Easy Motion
 let g:EasyMotion_leader_key = '<Leader>'
+
+" autocomplete dash
+set iskeyword+=-
