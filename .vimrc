@@ -35,6 +35,9 @@ noremap <BS> :nohlsearch<CR>
 noremap <c-l> ysaw
 noremap <leader>h <Esc>:call ToggleHardMode()<CR>
 
+" open github repo
+nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs xdg-open<CR><CR>
+
 "Command aliases
 :ca W w
 :ca WQ wq
