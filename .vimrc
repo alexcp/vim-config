@@ -190,3 +190,6 @@ set iskeyword+=-
 set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
+
+" Automatically reread files that have been changed externally
+set autoread
