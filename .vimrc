@@ -36,7 +36,7 @@ noremap <c-l> ysaw
 noremap <leader>h <Esc>:call ToggleHardMode()<CR>
 
 " open github repo
-nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs xdg-open<CR><CR>
+nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs xdg-open <CR><CR>
 
 "Command aliases
 :ca W w
@@ -185,3 +185,8 @@ let g:EasyMotion_leader_key = '<Leader>'
 
 " autocomplete dash
 set iskeyword+=-
+
+" allow undo even if vim was closed
+set undodir=$HOME/.vim/undo
+set undolevels=1000
+set undoreload=10000
