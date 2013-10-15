@@ -194,6 +194,9 @@ set undoreload=10000
 " Automatically reread files that have been changed externally
 set autoread
 
+" Set the path to the ctags file
+autocmd VimEnter * set tags=$PWD/.git/tags;
+
 " Normal mode space switch to command mode
 nnoremap <space> :
 
