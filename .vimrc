@@ -105,7 +105,6 @@ set linespace=4
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
-set expandtab
 set autoindent
 
 filetype plugin on
@@ -211,3 +210,5 @@ function! RenameFile()
   endif
 endfunction 
 map <leader>n :call RenameFile()<cr>
+
+set expandtab
