@@ -131,14 +131,15 @@ let g:light_colorscheme = "sintax"
 " black is a custom xsession background color
 autocmd VimEnter * hi Normal ctermbg=256
 
-
-" removing some annoying keys
+" remapping some annoying keys
 nnoremap <F1> <nop>
 nnoremap Q <nop>
 nnoremap K <nop>
 nmap j gj
 nmap k gk
 nnoremap Y y$
+nnoremap V v$
+nnoremap P :pu!<CR>
 
 set ignorecase
 set smartcase
