@@ -56,6 +56,7 @@ noremap <F2> :TlistToggle<CR>
 
 "map to CtrlP
 noremap <silent>T :CtrlP<CR>
+noremap <leader>f :CtrlPBuffer<CR>
 
 filetype on
 
@@ -211,5 +212,8 @@ function! RenameFile()
   endif
 endfunction 
 map <leader>n :call RenameFile()<cr>
+
+" run Ack against word under cursor
+nnoremap <leader>g :Ack! <c-r><c-w><CR>
 
 set expandtab
