@@ -30,7 +30,7 @@ set mouse=c
 
 "Remapping key" do
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
-noremap <silent> <c-t> :call FindInNERDTree()<CR>
+noremap <silent> <c-t> :NERDTreeFind<CR>
 noremap <BS> :nohlsearch<CR>
 noremap <c-l> ysaw
 noremap <leader>h <Esc>:call ToggleHardMode()<CR>
@@ -215,5 +215,7 @@ map <leader>n :call RenameFile()<cr>
 
 " run Ack against word under cursor
 nnoremap <leader>g :Ack! <c-r><c-w><CR>
+
+set timeout timeoutlen=1000 ttimeoutlen=100
 
 set expandtab
