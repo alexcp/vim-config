@@ -47,7 +47,9 @@ nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<
 noremap <leader>q :GundoToggle<CR>
 
 "run rspec on current file"
-autocmd FileType ruby  noremap <leader>t :w\|!bundle exec rspec %<cr>
+"autocmd FileType ruby  noremap <leader>t :w\|!bundle exec rspec %<cr>
+map <Leader>t :call RunCurrentSpecFile()<CR>
+
 "run ant
 autocmd FileType java noremap <leader>t :! ant<cr>
 
