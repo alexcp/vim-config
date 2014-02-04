@@ -1,5 +1,7 @@
 call pathogen#infect('plugin')
 
+set shell=/bin/sh
+
 set nocompatible
 set modelines=0
 set encoding=utf-8
@@ -47,7 +49,6 @@ nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<
 noremap <leader>q :GundoToggle<CR>
 
 "run rspec on current file"
-"autocmd FileType ruby  noremap <leader>t :w\|!bundle exec rspec %<cr>
 map <Leader>t :call RunCurrentSpecFile()<CR>
 
 "run ant
