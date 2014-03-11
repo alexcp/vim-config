@@ -191,6 +191,7 @@ let g:EasyMotion_leader_key = '<Leader>'
 set iskeyword+=-
 
 " allow undo even if vim was closed
+set undofile
 set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
