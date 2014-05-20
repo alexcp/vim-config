@@ -1,6 +1,6 @@
-call pathogen#infect('plugin')
+call pathogen#infect()
 
-set shell=/bin/sh
+set shell=bash
 
 set nocompatible
 set modelines=0
@@ -111,8 +111,7 @@ set softtabstop=2
 set tabstop=2
 set autoindent
 
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " omnicompletion
 set omnifunc=syntaxcomplete#Complete
@@ -125,7 +124,6 @@ syntax on
 set guifont=Consolas\ 14
 set cursorline
 set enc=utf-8
-set t_Co=256
 
 "colortoggle settings
 let g:default_background_type = "dark"
