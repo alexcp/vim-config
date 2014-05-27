@@ -221,3 +221,6 @@ nnoremap <leader>g :Ack! <c-r><c-w><CR>
 set timeout timeoutlen=1000 ttimeoutlen=100
 
 set expandtab
+
+" This selects the previous closest text object.
+let g:wildfire_water_map = "-"
