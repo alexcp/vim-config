@@ -146,6 +146,11 @@ nnoremap P :pu!<CR>
 set ignorecase
 set smartcase
 set wildmode=longest,list
+set lazyredraw
+set ttyfast
+set noerrorbells
+set ruler
+set smarttab
 
 " do not include trailing \n at end of file 
 set binary noeol
@@ -187,6 +192,9 @@ let g:EasyMotion_leader_key = '<Leader>'
 
 " autocomplete dash
 set iskeyword+=-
+
+" do not count dot as word
+set iskeyword-=.
 
 " allow undo even if vim was closed
 set undofile
