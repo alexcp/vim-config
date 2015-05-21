@@ -124,6 +124,16 @@ set omnifunc=syntaxcomplete#Complete
 "hide buffers when not displayed
 set hidden
 
+" Don't make backups at all
+set nobackup
+set nowritebackup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+
+" Turn folding off for real, hopefully
+set foldmethod=manual
+set nofoldenable
+
 "Display options
 syntax on
 set guifont=Consolas\ 14
