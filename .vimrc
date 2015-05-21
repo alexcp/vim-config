@@ -37,6 +37,10 @@ noremap <BS> :nohlsearch<CR>
 noremap <c-l> ysaw
 noremap <leader>h <Esc>:call ToggleHardMode()<CR>
 
+"copy to system clipboard
+noremap <leader>p "+p
+noremap <leader>y "+y
+
 " open github repo
 nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs xdg-open <CR><CR>
 
