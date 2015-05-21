@@ -72,6 +72,7 @@ let java_highlight_functions="style"
 
 "alt-tab
 noremap  <silent>ç :b#<CR>
+noremap ` /
 
 "remove trailling whitespace + keep cursor position"
 fun! <SID>StripTrailingWhitespaces()
@@ -209,7 +210,7 @@ set autoread
 autocmd VimEnter * set tags=$PWD/.git/tags;
 
 " Normal mode space switch to command mode
-nnoremap <space> :
+nnoremap <space> :b#<CR>
 
 " Rename a file with <leader>n
 function! RenameFile()
