@@ -52,8 +52,8 @@ nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<
 "Gundo remap
 noremap <leader>q :GundoToggle<CR>
 
-"run rspec on current file"
-map <Leader>t :call RunCurrentSpecFile()<CR>
+"run current test on current file"
+"map <Leader>t :call RunCurrentSpecFile()<CR>
 
 "run ant
 autocmd FileType java noremap <leader>t :! ant<cr>
@@ -220,6 +220,8 @@ set undoreload=10000
 " Automatically reread files that have been changed externally
 set autoread
 
+set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+
 " Set the path to the ctags file
 autocmd VimEnter * set tags=$PWD/.git/tags;
 
@@ -244,6 +246,12 @@ nnoremap <leader>g :Ack! <c-r><c-w><CR>
 set timeout timeoutlen=1000 ttimeoutlen=100
 
 set expandtab
+
+" enable vim-airline all the time
+set laststatus=2
+
+" Wildfire plugin
+nmap <leader>s <Plug>(wildfire-quick-select)
 
 " This selects the previous closest text object.
 let g:wildfire_water_map = "-"
