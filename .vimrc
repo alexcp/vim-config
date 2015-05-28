@@ -140,6 +140,10 @@ set guifont=Consolas\ 14
 set cursorline
 set enc=utf-8
 
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+set endofline
+
 "colortoggle settings
 let g:default_background_type = "dark"
 let g:dark_colorscheme = "Tomorrow-Night"
@@ -237,7 +241,7 @@ function! RenameFile()
     exec ':silent !rm ' . old_name
     redraw!
   endif
-endfunction 
+endfunction
 map <leader>n :call RenameFile()<cr>
 
 " run Ack against word under cursor
@@ -255,3 +259,7 @@ nmap <leader>s <Plug>(wildfire-quick-select)
 
 " This selects the previous closest text object.
 let g:wildfire_water_map = "-"
+
+" Rubocp mapping
+let g:vimrubocop_keymap = 0
+nmap <Leader>r :RuboCop<CR>
