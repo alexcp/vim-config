@@ -263,3 +263,16 @@ let g:wildfire_water_map = "-"
 " Rubocp mapping
 let g:vimrubocop_keymap = 0
 nmap <Leader>r :RuboCop<CR>
+
+" rails.vim search folders
+let g:rails_projections = {
+  \ "app/services/*_service.rb": {
+  \   "command": "service",
+  \   "template":
+  \     ["class {camelcase|capitalize|colons}Service"
+  \      ."end"],
+  \   "test": [
+  \     "test/unit/services/{}_service_test.rb",
+  \     "spec/services/{}_service_spec.rb"
+  \   ]
+  \ }}
