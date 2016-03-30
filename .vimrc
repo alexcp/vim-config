@@ -52,8 +52,8 @@ nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<
 "Gundo remap
 noremap <leader>q :GundoToggle<CR>
 
-"run current test on current file"
-"map <Leader>t :call RunCurrentSpecFile()<CR>
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
 
 "run ant
 autocmd FileType java noremap <leader>t :! ant<cr>
