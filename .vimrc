@@ -6,6 +6,8 @@ set nocompatible
 set modelines=0
 set encoding=utf-8
 
+set term=xterm-256color
+
 let mapleader = ","
 
 "quit nerdtree on file open"
@@ -136,7 +138,7 @@ set nofoldenable
 
 "Display options
 syntax on
-set guifont=Consolas\ 14
+set guifont=incosolata\ 14
 set cursorline
 set enc=utf-8
 
