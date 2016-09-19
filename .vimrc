@@ -202,12 +202,6 @@ function! GoodMatch(items, str, limit, mmode, ispath, crfile, regex)
   return split(system(cmd), "\n")
 endfunction
 
-"Rainbow Parenteses
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-
 "Easy Motion
 let g:EasyMotion_leader_key = '<Leader>'
 
@@ -265,6 +259,11 @@ let g:wildfire_water_map = "-"
 " Rubocp mapping
 let g:vimrubocop_keymap = 0
 nmap <Leader>r :RuboCop<CR>
+
+" Convert Ruby hash syntax
+function! ConvertHashSyntax()
+  exec ":%s/:\([^ ]*\)\(\s*\)=>/\1:/g"
+endfunction
 
 " rails.vim search folders
 let g:rails_projections = {
