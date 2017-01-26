@@ -148,11 +148,13 @@ set endofline
 
 "colortoggle settings
 let g:default_background_type = "dark"
-let g:dark_colorscheme = "Tomorrow-Night"
+let g:dark_colorscheme = "base16-tomorrow-night2"
 let g:light_colorscheme = "sintax"
 
 " black is a custom xsession background color
 autocmd VimEnter * hi Normal ctermbg=256
+
+let base16colorspace=256  " Access colors present in 256 colorspace
 
 " remapping some annoying keys
 nnoremap <F1> <nop>
