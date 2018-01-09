@@ -1,12 +1,12 @@
 call pathogen#infect()
 
-set shell=bash
+set shell=zsh
 
 set nocompatible
 set modelines=0
 set encoding=utf-8
 
-set term=xterm-256color
+set term=screen-256color
 
 let mapleader = ","
 
@@ -266,6 +266,8 @@ nmap <Leader>r :RuboCop<CR>
 function! ConvertHashSyntax()
   exec ":%s/:\([^ ]*\)\(\s*\)=>/\1:/g"
 endfunction
+
+let loaded_matchparen = 1
 
 " rails.vim search folders
 let g:rails_projections = {
