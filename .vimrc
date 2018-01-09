@@ -247,7 +247,9 @@ nnoremap <leader>g :Ack! <c-r><c-w><CR>
 
 set timeout timeoutlen=1000 ttimeoutlen=100
 
-set expandtab
+" Do not convert tab characters to space 
+" set expandtab
+set softtabstop=0 noexpandtab
 
 " enable vim-airline all the time
 set laststatus=2
