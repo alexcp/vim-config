@@ -40,6 +40,7 @@ setlocal indentkeys=o,O,*<Return>,<>>,{,},!^F
 
 
 let s:tags = []
+let s:no_tags = []
 
 " [-- <ELEMENT ? - - ...> --]
 call add(s:tags, 'a')
@@ -163,6 +164,44 @@ call add(s:tags, 'text')
 call add(s:tags, 'textPath')
 call add(s:tags, 'tref')
 call add(s:tags, 'tspan')
+" Common self closing SVG elements
+call add(s:no_tags, 'animate')
+call add(s:no_tags, 'animateTransform')
+call add(s:no_tags, 'circle')
+call add(s:no_tags, 'ellipse')
+call add(s:no_tags, 'feBlend')
+call add(s:no_tags, 'feColorMatrix')
+call add(s:no_tags, 'feComposite')
+call add(s:no_tags, 'feConvolveMatrix')
+call add(s:no_tags, 'feDisplacementMap')
+call add(s:no_tags, 'feFlood')
+call add(s:no_tags, 'feFuncR')
+call add(s:no_tags, 'feFuncG')
+call add(s:no_tags, 'feFuncB')
+call add(s:no_tags, 'feFuncA')
+call add(s:no_tags, 'feGaussianBlur')
+call add(s:no_tags, 'feImage')
+call add(s:no_tags, 'feMergeNode')
+call add(s:no_tags, 'feMorphology')
+call add(s:no_tags, 'feOffset')
+call add(s:no_tags, 'fePointLight')
+call add(s:no_tags, 'feSpotLight')
+call add(s:no_tags, 'feTile')
+call add(s:no_tags, 'feTurbulence')
+call add(s:no_tags, 'hatchpath')
+call add(s:no_tags, 'hkern')
+call add(s:no_tags, 'image')
+call add(s:no_tags, 'line')
+call add(s:no_tags, 'mpath')
+call add(s:no_tags, 'polygon')
+call add(s:no_tags, 'polyline')
+call add(s:no_tags, 'path')
+call add(s:no_tags, 'rect')
+call add(s:no_tags, 'solidColor')
+call add(s:no_tags, 'stop')
+call add(s:no_tags, 'use')
+call add(s:no_tags, 'view')
+call add(s:no_tags, 'vkern')
 
 call add(s:tags, 'html')
 call add(s:tags, 'head')
@@ -175,7 +214,22 @@ call add(s:tags, 'tr')
 call add(s:tags, 'th')
 call add(s:tags, 'td')
 
-
+call add(s:no_tags, 'base')
+call add(s:no_tags, 'link')
+call add(s:no_tags, 'meta')
+call add(s:no_tags, 'hr')
+call add(s:no_tags, 'br')
+call add(s:no_tags, 'wbr')
+call add(s:no_tags, 'img')
+call add(s:no_tags, 'embed')
+call add(s:no_tags, 'param')
+call add(s:no_tags, 'source')
+call add(s:no_tags, 'track')
+call add(s:no_tags, 'area')
+call add(s:no_tags, 'col')
+call add(s:no_tags, 'input')
+call add(s:no_tags, 'keygen')
+call add(s:no_tags, 'menuitem')
 
 let s:omittable = [ 
   \  ['address', 'article', 'aside', 'blockquote', 'dir', 'div', 'dl', 'fieldset', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hr', 'menu', 'nav', 'ol', 'p', 'pre', 'section', 'table', 'ul'],
@@ -185,34 +239,47 @@ let s:omittable = [
   \  ['th', 'td'],
   \]
 
+
+let s:html_noindent_tags = join(s:no_tags, '\|')
+
 if exists('g:html_exclude_tags')
     for tag in g:html_exclude_tags
         call remove(s:tags, index(s:tags, tag))
     endfor
+    let s:html_noindent_tags = s:html_noindent_tags.'\|'.join(g:html_exclude_tags, '\|')
 endif
-let s:html_indent_tags = join(s:tags, '\|')
-let s:html_indent_tags = s:html_indent_tags.'\|\w\+\(-\w\+\)\+'
-if exists('g:html_indent_tags')
-    let s:html_indent_tags = s:html_indent_tags.'\|'.g:html_indent_tags
-endif
+
+" let s:html_indent_tags = join(s:tags, '\|')
+let s:html_indent_tags = '[a-z_][a-z0-9_.-]*'
+" if exists('g:html_indent_tags')
+    " let s:html_indent_tags = s:html_indent_tags.'\|'.g:html_indent_tags
+" endif
 
 let s:cpo_save = &cpo
 set cpo-=C
 
-" [-- count indent-increasing tags of line a:lnum --]
-fun! <SID>HtmlIndentOpen(lnum, pattern)
-    let s = substitute('x'.getline(a:lnum),
-    \ '.\{-}\(\(<\)\('.a:pattern.'\)\>\)', "\1", 'g')
+func! <SID>HtmlIndentPatternCount(content, pattern)
+    let s = substitute('x'.a:content, a:pattern, "\1", 'g')
     let s = substitute(s, "[^\1].*$", '', '')
     return strlen(s)
 endfun
 
+" [-- count indent-increasing tags of line a:lnum --]
+fun! <SID>HtmlIndentOpen(lnum, pattern)
+    return <SID>HtmlIndentPatternCount(getline(a:lnum),
+    \ '.\{-}\(\(<\)\('.a:pattern.'\)\>\)')
+endfun
+
 " [-- count indent-decreasing tags of line a:lnum --]
 fun! <SID>HtmlIndentClose(lnum, pattern)
-    let s = substitute('x'.getline(a:lnum),
-    \ '.\{-}\(\(<\)/\('.a:pattern.'\)\>>\)', "\1", 'g')
-    let s = substitute(s, "[^\1].*$", '', '')
-    return strlen(s)
+    return <SID>HtmlIndentPatternCount(getline(a:lnum),
+    \ '.\{-}\(\(<\)/\('.a:pattern.'\)\>>\)')
+endfun
+
+" [-- count self close tags of line a:lnum --]
+fun! <SID>HtmlIndentSelfClose(lnum, pattern)
+    return <SID>HtmlIndentPatternCount(getline(a:lnum),
+    \ '.\{-}\(\(<\('.a:pattern.'\).*\)\@<!\/>\)')
 endfun
 
 " [-- count indent-increasing '{' of (java|css) line a:lnum --]
@@ -229,10 +296,11 @@ endfun
 fun! <SID>HtmlIndentSum(lnum, style)
     if a:style == match(getline(a:lnum), '^\s*</')
         if a:style == match(getline(a:lnum), '^\s*</\<\('.s:html_indent_tags.'\)\>')
-            let open = <SID>HtmlIndentOpen(a:lnum, s:html_indent_tags)
-            let close = <SID>HtmlIndentClose(a:lnum, s:html_indent_tags)
-            if 0 != open || 0 != close
-                return open - close
+            let open = <SID>HtmlIndentOpen(a:lnum, s:html_indent_tags) - <SID>HtmlIndentOpen(a:lnum, s:html_noindent_tags)
+            let close = <SID>HtmlIndentClose(a:lnum, s:html_indent_tags) - <SID>HtmlIndentClose(a:lnum, s:html_noindent_tags)
+            let self_close = <SID>HtmlIndentSelfClose(a:lnum, s:html_noindent_tags)
+            if 0 != open || 0 != close || 0 != self_close
+                return open - close - self_close
             endif
         endif
     endif
@@ -249,6 +317,13 @@ fun! <SID>HtmlIndentSum(lnum, style)
 endfun
 
 fun! HtmlIndentGet(lnum)
+    " Get shiftwidth value.
+    if exists('*shiftwidth')
+        let sw = shiftwidth()
+    else
+        let sw = &sw
+    endif
+
     " Find a non-empty line above the current line.
     let lnum = prevnonblank(a:lnum - 1)
 
@@ -335,7 +410,7 @@ fun! HtmlIndentGet(lnum)
             endif
 
             if 0 == match(getline(a:lnum), '^\s*</')
-                return indent(preline) - (1*&sw)
+                return indent(preline) - (1*sw)
             else
                 return indent(preline)
             endif
@@ -356,7 +431,7 @@ fun! HtmlIndentGet(lnum)
       " let tags_exp = '<\(' . join(tags, '\|') . '\)>'
       " let close_tags_exp = '</\(' . join(tags, '\|') . '\)>'
       " if getline(a:lnum) =~ tags_exp
-        " let block_start = search('^'.repeat(' ', lind + (&sw * ind - 1)).'\S'  , 'bnW')
+        " let block_start = search('^'.repeat(' ', lind + (sw * ind - 1)).'\S'  , 'bnW')
         " let prev_tag = search(tags_exp, 'bW', block_start)
         " let prev_closetag = search(close_tags_exp, 'W', a:lnum)
         " if prev_tag && !prev_closetag
@@ -365,7 +440,7 @@ fun! HtmlIndentGet(lnum)
       " endif
 
       " if getline(a:lnum) =~ '</\w\+>'
-        " let block_start = search('^'.repeat(' ', lind + (&sw * ind - 1)).'\S'  , 'bnW')
+        " let block_start = search('^'.repeat(' ', lind + (sw * ind - 1)).'\S'  , 'bnW')
         " let prev_tag = search(tags_exp, 'bW', block_start)
         " let prev_closetag = search(close_tags_exp, 'W', a:lnum)
         " if prev_tag && !prev_closetag
@@ -378,7 +453,7 @@ fun! HtmlIndentGet(lnum)
         setlocal noic
     endif
 
-    return lind + (&sw * ind)
+    return lind + (sw * ind)
 endfun
 
 let &cpo = s:cpo_save
