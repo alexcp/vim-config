@@ -6,7 +6,7 @@ set nocompatible
 set modelines=0
 set encoding=utf-8
 
-set term=screen-256color
+""set term=screen-256color
 
 let mapleader = ","
 
@@ -65,7 +65,7 @@ noremap <F2> :TlistToggle<CR>
 
 "map to CtrlP
 noremap <silent>T :CtrlP<CR>
-noremap <leader>f :CtrlPBuffer<CR>
+noremap <silent>F :CtrlPBuffer<CR>
 
 filetype on
 
@@ -147,9 +147,11 @@ set ffs=unix,dos,mac
 set endofline
 
 "colortoggle settings
-let g:default_background_type = "dark"
-let g:dark_colorscheme = "base16-tomorrow-night2"
-let g:light_colorscheme = "sintax"
+""let g:default_background_type = "dark"
+""let g:dark_colorscheme = "base16-tomorrow-night"
+""let g:light_colorscheme = "sintax"
+set termguicolors
+colorscheme base16-tomorrow-night
 
 " black is a custom xsession background color
 autocmd VimEnter * hi Normal ctermbg=256
@@ -174,6 +176,7 @@ set ttyfast
 set noerrorbells
 set ruler
 set smarttab
+set expandtab
 
 " do not include trailing \n at end of file 
 set binary noeol
@@ -247,10 +250,12 @@ nnoremap <leader>g :Ack! <c-r><c-w><CR>
 
 set timeout timeoutlen=1000 ttimeoutlen=100
 
-set expandtab
 
 " enable vim-airline all the time
 set laststatus=2
+let g:airline_theme='base16'
+let g:airline_extensions = []
+let g:airline_highlighting_cache = 1
 
 " Wildfire plugin
 nmap <leader>s <Plug>(wildfire-quick-select)
@@ -274,6 +279,8 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 let loaded_matchparen = 1
+
+set softtabstop=2 shiftwidth=2 expandtab
 
 " rails.vim search folders
 let g:rails_projections = {
