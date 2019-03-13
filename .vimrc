@@ -80,6 +80,9 @@ let java_highlight_functions="style"
 noremap  <silent>ç :b#<CR>
 noremap ` /
 
+" Disable quitting with ZZ
+noremap ZZ Z
+
 "remove trailling whitespace + keep cursor position"
 fun! <SID>StripTrailingWhitespaces()
   let l = line(".")
