@@ -249,10 +249,6 @@ nmap <leader>s <Plug>(wildfire-quick-select)
 " This selects the previous closest text object.
 let g:wildfire_water_map = "-"
 
-" Rubocp mapping
-let g:vimrubocop_keymap = 0
-nmap <Leader>r :RuboCop<CR>
-
 " Convert Ruby hash syntax
 function! ConvertHashSyntax()
   exec ":%s/:\([^ ]*\)\(\s*\)=>/\1:/g"
@@ -268,8 +264,7 @@ let loaded_matchparen = 1
 
 set softtabstop=2 shiftwidth=2 expandtab
 
-"run Tslint when saving typescript file
-autocmd BufWritePost *.ts,*.tsx call tslint#run('a', win_getid())
+"call neomake#configure#automake('w')
 
 " rails.vim search folders
 let g:rails_projections = {
